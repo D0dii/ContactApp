@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace ContactApp.StatesOfMachine
 {
-    public class DeleteState : IState
+    public class DisplayRecentCallingsState : IState
     {
         public void doAction(List<Contact> contacts)
         {
             string name;
             Console.WriteLine("Enter contact name:");
             name = Console.ReadLine();
-            contacts.RemoveAll(c => c.Name == name);
+            Contact c = contacts.FirstOrDefault(c => c.Name == name);
+            c.recentCallings();
         }
     }
 }

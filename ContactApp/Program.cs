@@ -16,8 +16,8 @@ while(choice != 0)
     Console.WriteLine("2 - add contact");
     Console.WriteLine("3 - delete contact");
     Console.WriteLine("4 - call contact");
-    Console.WriteLine("5 - find contact by number");
-    Console.WriteLine("6 - find contact by name of contact");
+    Console.WriteLine("5 - display contact");
+    Console.WriteLine("6 - display recent callings with contact");
     Console.WriteLine("0 - exit");
     Boolean succes = int.TryParse(Console.ReadLine(),out choice);
     while (!succes||choice<0||choice>6)
@@ -33,6 +33,22 @@ while(choice != 0)
             break;
         case 2:
             stateMachine.CurrentState = new AddState();
+            stateMachine.doAction(contacts);
+            break;
+        case 3:
+            stateMachine.CurrentState = new DeleteState();
+            stateMachine.doAction(contacts);
+            break;
+        case 4:
+            stateMachine.CurrentState = new CallState();
+            stateMachine.doAction(contacts);
+            break;
+        case 5:
+            stateMachine.CurrentState = new DisplayContactState();
+            stateMachine.doAction(contacts);
+            break;
+        case 6:
+            stateMachine.CurrentState = new DisplayRecentCallingsState();
             stateMachine.doAction(contacts);
             break;
     }

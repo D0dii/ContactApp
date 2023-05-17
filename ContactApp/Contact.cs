@@ -16,17 +16,26 @@ namespace ContactApp
         {
             Name = name;
             Human = human;
+            Callings = new List<Calling>();
         }
 
         public void call()
         {
-            Console.WriteLine("Calling to "+Human.ToString());
+            Console.WriteLine("Calling to "+Name);
             Callings.Add(new Calling(Human));
         }
 
         public override string ToString()
         {
-            return $"Name of contact:{Name} {Human} {Callings}";
+            return $"Name of contact:{Name} {Human}";
+        }
+
+        public void recentCallings()
+        {
+            foreach(Calling call in Callings)
+            {
+                Console.WriteLine(call);
+            }
         }
     }
 }
