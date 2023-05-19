@@ -8,13 +8,23 @@ namespace ContactApp.StatesOfMachine
 {
     public class DisplayRecentCallingsState : IState
     {
+        private GetInputFromUser GetInputFromUser;
+        public DisplayRecentCallingsState() { 
+            GetInputFromUser = new GetInputFromUser();
+        }
         public void doAction(List<Contact> contacts)
         {
-            string name;
-            Console.WriteLine("Enter contact name:");
-            name = Console.ReadLine();
+            string name = GetInputFromUser.getInput();
             Contact c = contacts.FirstOrDefault(c => c.Name == name);
-            c.recentCallings();
+            if (c != null)
+            {
+                c.recentCallings();
+            }
+            else
+            {
+                Console.WriteLine("Not found");
+            }
+            
         }
     }
 }
